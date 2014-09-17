@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function shutdown()
+{
+    echo "`date +"%d.%m.%Y %T.%3N"` - Shutting down nexus"
+    /opt/nexus/bin/nexus stop
+}
+
+chown -R nexus:nexus sonatype-work
+chown -R nexus:nexus nexus/conf
+
+echo "`date +"%d.%m.%Y %T.%3N"` - Starting nexus"
+
+/opt/nexus/bin/nexus start
+
+# Allow any signal which would kill a process to stop server
+trap shutdown HUP INT QUIT ABRT KILL ALRM TERM TSTP
+
+while pgrep -u nexus java > /dev/null; do sleep 5; done
+
