@@ -27,6 +27,6 @@ has been used.
 container (fast-food, auto-destroy) or even to just
 open a bash shell to play. You can sun supervisord manually,
 of course.
-* **runnexus.ah** : convenient way to run nexus container
+* **runnexus.sh** : convenient way to run nexus container
 from your shell.
 
